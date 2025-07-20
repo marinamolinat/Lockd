@@ -1,7 +1,10 @@
 let timeText = document.querySelector("#time");
-let closeButton = document.querySelector("#close");
-let windowElement = document.getElementById("window");
-let openButton = document.getElementById("open")
+
+let windowElements = document.getElementsByClassName("window");
+let closeButtons = document.getElementsByClassName("close");
+
+
+
 
 function updateTime() {
         let currentTime = new Date().toLocaleString();
@@ -12,32 +15,39 @@ function updateTime() {
 updateTime();
 
 
-function closeWindow(element) {
-  element.style.display = "none";
-}
-//
-closeButton.addEventListener("click", function() {
-  closeWindow(windowElement);
+
+
+
+
+//close button
+document.querySelectorAll('.close').forEach(button => {
+  button.addEventListener('click', function () {
+
+    const parent = button.closest('.window'); 
+    if (parent) {
+      parent.style.display = 'none';
+    }
+  });
 });
 
-openButton.addEventListener("click", function(){
-    //open window
-    windowElement.style.display = "flex";
-
-})
-
+for (let el of windowElements) {
+    dragElement(el);
+ 
+}
 
 
-dragElement(document.getElementById("window"));
+
+
 
 // Courtesy of w3 school
 function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  if (document.getElementById(elmnt.id + "header")) {
-    // if present, the header is where you move the DIV from:
-    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+
+  if (elmnt.querySelector(".windowheader")) {
+    /* if present, the header is where you move the DIV from:*/
+    elmnt.querySelector(".windowheader").onmousedown = dragMouseDown; 
   } else {
-    // otherwise, move the DIV from anywhere inside the DIV:
+    /* otherwise, move the DIV from anywhere inside the DIV:*/
     elmnt.onmousedown = dragMouseDown;
   }
 
@@ -66,7 +76,7 @@ function dragElement(elmnt) {
   }
 
   function closeDragElement() {
-    // stop moving when mouse button is released:
+    /* stop moving when mouse button is released:*/
     document.onmouseup = null;
     document.onmousemove = null;
   }

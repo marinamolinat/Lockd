@@ -1,4 +1,4 @@
-#window {
+.window {
     
 
     border: 4px;
@@ -14,6 +14,27 @@
 
 
 }
+.windowheader {
+    display: flex;
+    margin: 0;
+
+    background-color: rgba(0, 0, 0, 0.5);
+    user-select: none; 
+    cursor: grab;
+}
+
+.windowheader * {
+    margin: 8px;
+    align-self: center;
+
+}
+
+
+
+
+#notes {
+    position: absolute;
+}
 #open {
     border-radius: 30px;
     border-style: solid;
@@ -22,31 +43,31 @@
    
 
 }
-#window header {
-   
-  
-    display: block;
-    margin: 0;
 
-    background-color: rgba(0, 0, 0, 0.5);
-    user-select: none; 
-    cursor: grab;
-
-}
-
-#window header button {
+.window header button {
     border-radius: 10px;
     margin: 8px;
     height: 15px;
     border-style: none;
     width: 15px;
+    cursor: pointer;
    
     background-color: #FF605C;
 
 
 
 }
-#window #content {
+.window header:active {
+  
+    cursor: grabbing;
+   
+
+
+
+
+}
+
+.window .content {
     padding: 10px;
 }
 
