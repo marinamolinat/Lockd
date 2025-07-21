@@ -4,6 +4,7 @@ let windowElements = document.getElementsByClassName("window");
 const countDownButton = document.getElementById("countdownButton");
 const display = document.getElementById("countdownDisplay");
 let timeValue = null;
+const spaceSubmit = document.getElementById("spaceSubmitButton");
 
 
 
@@ -55,7 +56,12 @@ countDownButton.addEventListener("click", function() {
 
 
 
+spaceSubmit.addEventListener("click", function() {
+    const input = document.getElementById("inputSpace")
+    document.body.style.backgroundImage = `url("${input.value}")`;
 
+
+})
 
 
 
