@@ -58,8 +58,20 @@ countDownButton.addEventListener("click", function() {
 
 spaceSubmit.addEventListener("click", function() {
     const input = document.getElementById("inputSpace")
-    document.body.style.backgroundImage = `url("${input.value}")`;
+    const url = input.value;
+    const testImage = new Image();
 
+    testImage.onload = function () {
+    // Only set background if image loads successfully
+    document.body.style.backgroundImage = `url("${url}")`;
+  };
+
+  testImage.onerror = function () {
+   alert("Error, image is not valid")
+  };
+
+  testImage.src = url;
+    
 
 })
 
