@@ -50,10 +50,16 @@
     background-color: rgb(31, 32, 32);
     padding: 10px;
     margin: 5px;
+    height: 100%;
+   
 }
 
 .content button{
     font-family: Helvetica, Arial, sans-serif;
+    padding: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
+    
     
     
  
@@ -201,3 +207,23 @@ input[type="datetime-local"] {
 
 }
 
+#pomodoro {
+    width: 300px;
+    height: 200px;
+}
+
+#pomodoro > .content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#pomodoro .upper {
+    display: flex;
+    justify-content: flex-start;
+    
+    width: 100%;
+
+    
+
+}

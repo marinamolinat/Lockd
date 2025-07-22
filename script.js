@@ -5,6 +5,20 @@ const countDownButton = document.getElementById("countdownButton");
 const display = document.getElementById("countdownDisplay");
 let timeValue = null;
 const spaceSubmit = document.getElementById("spaceSubmitButton");
+const startButton = document.getElementById("startButton");
+let pause = true;
+const timerButton = document.getElementById("timerButton");
+const pomodoroButton = document.getElementById("pomodoroButton");
+const pomodoroDisplay = document.getElementById("pomodoroDisplay");
+let pomodoroMinutes = 20;
+let isPomodoro = false;
+let minutes = 0;
+let seconds = 0;
+let timer;
+const resetButton = document.getElementById("resetButton");
+
+
+
 
 
 
@@ -18,10 +32,12 @@ function updateTime() {
         //count down
         if(!timeValue){
             display.innerText = `CountDown`;
+    
 
 
         }
-        else {
+        else 
+        {
              //Unix time babyy
         currentTime = new Date().getTime();
         let countDownDate = new Date(timeValue).getTime();
@@ -49,8 +65,90 @@ countDownButton.addEventListener("click", function() {
 
     timeValue = input.value;
 
-
     
+});
+
+//pomodoro
+
+pomodoroButton.addEventListener("click", function() {
+    pomodoroDisplay.innerHTML = `${pomodoroMinutes}:00`;
+    minutes = pomodoroMinutes;
+    isPomodoro = true;
+
+
+
+
+});
+
+timerButton.addEventListener("click", function() {
+    pomodoroDisplay.innerHTML = "00:00"
+    isPomodoro = false;
+
+});
+
+
+
+
+startButton.addEventListener("click", function(){
+    pause = !pause;
+    if (pause){
+        startButton.innerHTML= `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                    <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393"/>
+                    </svg>`;
+        clearInterval(timer);
+
+
+    }
+    else{
+        timer = setInterval(updateTimer, 1000);
+
+       startButton.innerHTML= `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pause-fill" viewBox="0 0 16 16">
+        <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5m5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5"/>
+        </svg>`;
+
+
+    }
+
+
+}); 
+
+
+function updateTimer() {
+    const timerElement = document.getElementById('timer');
+    pomodoroDisplay.innerHTML =  `${minutes}:${seconds}`;
+
+    if (minutes === 0 && seconds === 0) {
+        clearInterval(timer);
+        alert('Time is up! Take a break.');
+    }
+    else if (!pause) 
+    {
+        if (seconds > 0) {
+            seconds--;
+        } 
+        else {
+            seconds = 59;
+            minutes--;
+        }
+    }
+    console.log(minutes);
+}
+
+resetButton.addEventListener("click", function(){
+      
+      seconds = 0;
+      if (isPomodoro){
+        minutes = pomodoroMinutes;
+
+      }
+      else{
+        minutes = 0;
+      }
+      pomodoroDisplay.innerText = `${minutes}:${seconds}`;
+      
+      
+    
+
 });
 
 
