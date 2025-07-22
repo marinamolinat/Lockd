@@ -15,7 +15,9 @@ let isPomodoro = false;
 let minutes = 0;
 let seconds = 0;
 let timer;
+const pomodoroSubmitSettings = document.getElementById("pomodoroSubmitSettings");
 const resetButton = document.getElementById("resetButton");
+const audioFinish = new Audio('audio/beauty.wav');
 
 
 
@@ -161,6 +163,7 @@ function updateTimerPomodoro() {
     if (minutes === 0 && seconds === 0) {
         clearInterval(timer);
         alert('Time is up! Take a break.');
+        audioFinish.play();
     }
     else if (!pause) 
     {
@@ -218,6 +221,26 @@ resetButton.addEventListener("click", function(){
     
 
 });
+
+//change pomodoro minutes
+pomodoroSubmitSettings.addEventListener("click", function(){
+    const pomodoroInputMinutes = document.getElementById("pomodoroInputMinutes");
+    pomodoroMinutes = pomodoroInputMinutes.value;
+    
+    if (isPomodoro){
+        console.log(":)")
+        //change display: 
+        pomodoroDisplay.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+    }
+
+
+
+});
+
+
+
+
 
 
 
