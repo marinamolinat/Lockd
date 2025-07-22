@@ -71,18 +71,51 @@ countDownButton.addEventListener("click", function() {
 //pomodoro
 
 pomodoroButton.addEventListener("click", function() {
-    pomodoroDisplay.innerHTML = `${pomodoroMinutes}:00`;
-    minutes = pomodoroMinutes;
-    isPomodoro = true;
+    console.log(isPomodoro);
+    if (!isPomodoro){
+        isPomodoro = true;
+        minutes = pomodoroMinutes;
+        seconds = 0;
+        pomodoroDisplay.innerHTML = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        clearInterval(timer);
+       
+        
 
+        if (!pause){
+            startButton.innerHTML= `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                        <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393"/>
+                        </svg>`;
+                pause = true;
 
+        }
+    }
+   
+    
 
 
 });
 
 timerButton.addEventListener("click", function() {
-    pomodoroDisplay.innerHTML = "00:00"
-    isPomodoro = false;
+
+    if(isPomodoro){
+        minutes = 0;
+        seconds = 0;
+        pomodoroDisplay.innerHTML = "00:00"
+        isPomodoro = false;
+        clearInterval(timer);
+
+        //if its unpaused, pause it 
+        if (!pause){
+            startButton.innerHTML= `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                        <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393"/>
+                        </svg>`;
+                pause = true;
+
+        }
+
+    }
+    
+
 
 });
 
@@ -91,6 +124,7 @@ timerButton.addEventListener("click", function() {
 
 startButton.addEventListener("click", function(){
     pause = !pause;
+    
     if (pause){
         startButton.innerHTML= `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
                     <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393"/>
@@ -100,7 +134,14 @@ startButton.addEventListener("click", function(){
 
     }
     else{
-        timer = setInterval(updateTimer, 1000);
+        if (isPomodoro){
+            timer = setInterval(updateTimerPomodoro, 1000);
+
+        }
+        else {
+            timer = setInterval(updateTimerStopwatch, 1000)
+        }
+        
 
        startButton.innerHTML= `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pause-fill" viewBox="0 0 16 16">
         <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5m5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5"/>
@@ -113,9 +154,9 @@ startButton.addEventListener("click", function(){
 }); 
 
 
-function updateTimer() {
+function updateTimerPomodoro() {
     const timerElement = document.getElementById('timer');
-    pomodoroDisplay.innerHTML =  `${minutes}:${seconds}`;
+    
 
     if (minutes === 0 && seconds === 0) {
         clearInterval(timer);
@@ -131,8 +172,35 @@ function updateTimer() {
             minutes--;
         }
     }
-    console.log(minutes);
+    //displays time
+    pomodoroDisplay.innerHTML =  `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
+    
+    
 }
+
+function updateTimerStopwatch() {
+    const timerElement = document.getElementById('timer');
+
+   
+    if (!pause) 
+    {
+        seconds++;
+        if (seconds >= 60){
+            seconds = 0;
+            minutes++;
+
+        }
+    
+    }
+    //displays time
+    pomodoroDisplay.innerHTML =  `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
+    
+    
+}
+
+
+
+
 
 resetButton.addEventListener("click", function(){
       
@@ -144,7 +212,7 @@ resetButton.addEventListener("click", function(){
       else{
         minutes = 0;
       }
-      pomodoroDisplay.innerText = `${minutes}:${seconds}`;
+      pomodoroDisplay.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
       
       
     
