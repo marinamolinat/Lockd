@@ -18,6 +18,9 @@ let timer;
 const pomodoroSubmitSettings = document.getElementById("pomodoroSubmitSettings");
 const resetButton = document.getElementById("resetButton");
 const audioFinish = new Audio('audio/beauty.wav');
+let endTime;
+let startTime;
+
 
 
 
@@ -72,62 +75,36 @@ submitCountDownButton.addEventListener("click", function() {
     
 });
 
-//pomodoro
 
+//pomodoro
+// and stop watch
 pomodoroButton.addEventListener("click", function() {
-    console.log(isPomodoro);
+    
     if (!isPomodoro){
         isPomodoro = true;
-        minutes = pomodoroMinutes;
-        seconds = 0;
-        pomodoroDisplay.innerHTML = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-        clearInterval(timer);
-       
-        
-
-        if (!pause){
-            startButton.innerHTML= `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
-                        <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393"/>
-                        </svg>`;
-                pause = true;
-
-        }
+        reset();
     }
    
     
-
 
 });
 
 timerButton.addEventListener("click", function() {
 
     if(isPomodoro){
-        minutes = 0;
-        seconds = 0;
-        pomodoroDisplay.innerHTML = "00:00"
         isPomodoro = false;
-        clearInterval(timer);
-
-        //if its unpaused, pause it 
-        if (!pause){
-            startButton.innerHTML= `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
-                        <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393"/>
-                        </svg>`;
-                pause = true;
-
-        }
+        reset();
 
     }
-    
 
 
 });
 
 
 
-
 startButton.addEventListener("click", function(){
     pause = !pause;
+
     
     if (pause){
         startButton.innerHTML= `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
@@ -137,15 +114,23 @@ startButton.addEventListener("click", function(){
 
 
     }
-    else{
-        if (isPomodoro){
-            timer = setInterval(updateTimerPomodoro, 1000);
 
-        }
-        else {
-            timer = setInterval(updateTimerStopwatch, 1000)
-        }
+    else{
         
+        if (isPomodoro){
+            
+            endTime = (minutes * 60000) + (seconds * 1000)  + Date.now(); //millie seconds
+
+            timer = setInterval(updateTimerPomodoro, 500);
+
+            }
+        else {
+
+            //stopwatch is just starting 
+                startTime = Date.now() - (minutes * 60000) - (seconds * 1000);
+
+                timer = setInterval(updateTimerStopwatch, 1000)
+            }
 
        startButton.innerHTML= `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pause-fill" viewBox="0 0 16 16">
         <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5m5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5"/>
@@ -154,49 +139,43 @@ startButton.addEventListener("click", function(){
 
     }
 
-
 }); 
 
 
 function updateTimerPomodoro() {
-    const timerElement = document.getElementById('timer');
-    
+    let timeLeft = endTime -  Date.now();
 
-    if (minutes === 0 && seconds === 0) {
-        clearInterval(timer);
-        alert('Time is up! Take a break.');
+    
+    if (timeLeft <= 0) {
+        reset()
         audioFinish.play();
+        alert('Time is up! Take a break.');
     }
+
     else if (!pause) 
     {
-        if (seconds > 0) {
-            seconds--;
-        } 
-        else {
-            seconds = 59;
-            minutes--;
-        }
-    }
-    //displays time
-    pomodoroDisplay.innerHTML =  `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
+        seconds = Math.floor(timeLeft/1000);
+        minutes = Math.floor(seconds/60);
+        seconds = seconds % 60;
     
+    }
+    //display time
+    pomodoroDisplay.innerHTML =  `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
     
 }
 
 function updateTimerStopwatch() {
     const timerElement = document.getElementById('timer');
-
-   
+    let timeTranspired = Date.now() - startTime;
     if (!pause) 
     {
-        seconds++;
-        if (seconds >= 60){
-            seconds = 0;
-            minutes++;
-
-        }
+        seconds = Math.floor(timeTranspired/1000);
+        minutes = Math.floor(seconds/60);
+        seconds = seconds % 60;
     
     }
+
+
     //displays time
     pomodoroDisplay.innerHTML =  `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
     
@@ -208,8 +187,24 @@ function updateTimerStopwatch() {
 
 
 resetButton.addEventListener("click", function(){
+
+    reset();
       
-      seconds = 0;
+    
+
+});
+
+
+function reset() {
+    //first, pause the time and stop timer
+    pause = true;
+    startButton.innerHTML= `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                    <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393"/>
+                    </svg>`;
+        
+    clearInterval(timer);
+      
+    seconds = 0;
       if (isPomodoro){
         minutes = pomodoroMinutes;
 
@@ -221,8 +216,11 @@ resetButton.addEventListener("click", function(){
       
       
     
+}
 
-});
+
+
+
 
 //change pomodoro minutes
 pomodoroSubmitSettings.addEventListener("click", function(){
@@ -230,9 +228,8 @@ pomodoroSubmitSettings.addEventListener("click", function(){
     pomodoroMinutes = pomodoroInputMinutes.value;
     
     if (isPomodoro){
-        console.log(":)")
-        //change display: 
-        pomodoroDisplay.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        reset()
+
 
     }
 
