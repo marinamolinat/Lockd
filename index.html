@@ -6,13 +6,15 @@
     <title>Lockd</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg?v=2" sizes="any">
+
     
 </head>
 <body>
  
     <nav id="nav"> 
         <p>Lockd in</p>
-        <p id="time">10:12 am</p>
+        <p id="time">7/22/2025, 5:34:21 PM</p>
     </nav>
 
      <!-- Windows-->
@@ -53,8 +55,20 @@
 
     <div class="content">
          <h1 id="countdownDisplay">CountDown</h1>
-         <input id="inputDate" type="datetime-local"> 
-         <button id="countdownButton">sumbit</button>
+
+         <div style="display: flex; justify-self: center;">
+            <input id="inputDate" type="datetime-local"> 
+         <button class="btn btn-outline-light" id="countdownButton">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+            </svg>
+
+         </button>
+
+
+
+         </div>
+         
 
 
     </div>
@@ -68,26 +82,73 @@
     </header>
 
     <div class="content">
-        <div id="spaceDivider">
-            <div>
-                <p>Input the url of an image of your choice</p>
-                <input type="text" id="inputSpace">
+        <div class="upper">
+            <h1>Spaces</h1>
+            <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-balloon-fill" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8.48 10.901C11.211 10.227 13 7.837 13 5A5 5 0 0 0 3 5c0 2.837 1.789 5.227 4.52 5.901l-.244.487a.25.25 0 1 0 .448.224l.04-.08c.009.17.024.315.051.45.068.344.208.622.448 1.102l.013.028c.212.422.182.85.05 1.246-.135.402-.366.751-.534 1.003a.25.25 0 0 0 .416.278l.004-.007c.166-.248.431-.646.588-1.115.16-.479.212-1.051-.076-1.629-.258-.515-.365-.732-.419-1.004a2 2 0 0 1-.037-.289l.008.017a.25.25 0 1 0 .448-.224zM4.352 3.356a4 4 0 0 1 3.15-2.325C7.774.997 8 1.224 8 1.5s-.226.496-.498.542c-.95.162-1.749.78-2.173 1.617a.6.6 0 0 1-.52.341c-.346 0-.599-.329-.457-.644"/>
+            </svg>
+        </button>
+        <div class="dropdown-menu p-4">
+            <div class="mb-3">
+            <label for="inputSpace" class="form-label">Input the url of an image:</label>
+            <input type="text" class="form-control" id="inputSpace">
             </div>
-
-            <div> 
-
-                <p>Input the url of an image of your choice</p>
-                <input type="text" id="inputSpace">
+            <button id="spaceSubmitButton" class="btn btn-primary">Save</button>
+        </div>
 
 
-            </div>
+        </div>
+            
+
+        </div>
+        <div id="chooseSpace">
+
+        <ul>
+            
+            <li> <button class="buttonSpace">
+                <img src="images/green.jpg">
+            </li></button>
+             <li> <button class="buttonSpace">
+                <img src="images/space.jpg">
+            </li></button>
+              <li> <button class="buttonSpace">
+                <img src="images/desert.png">
+            </li></button>
+             <li> <button class="buttonSpace">
+                <img src="images/quest.png">
+            </li></button>
+              <li> <button class="buttonSpace">
+                <img src="images/blackhole.jpeg">
+            </li></button>
+             <li> <button class="buttonSpace">
+                <img src="images/greek.png">
+            </li></button>
+             <li> <button class="buttonSpace">
+                <img src="images/greenMundane.png">
+            </li></button>
+             <li> <button class="buttonSpace">
+                <img src="images/ship.png">
+            </li></button>
+           
+           
+            
+            
 
 
-        </div>    
 
-         <button id="spaceSubmitButton">Save</button>
+        </ul>
 
-    </div>
+        </div>
+       
+           
+
+
+        </div>
+
+
+    
     </div>
 
     <div class="window" id="pomodoro"> 
@@ -157,6 +218,18 @@
 
     </div>
     </div>
+
+
+    <div class="window" id="mediaWindow"> 
+        <header class="windowheader">
+        <button class="close">  </button>
+        
+    </header>
+
+    <div class="content">
+        <img src="https://i.pinimg.com/736x/13/24/2e/13242ee2e50325d91126ba7b2545ec81.jpg">
+    </div>
+     </div>
     
 
     <div id="bottom"> 

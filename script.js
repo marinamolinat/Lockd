@@ -24,6 +24,7 @@ const audioFinish = new Audio('audio/beauty.wav');
 
 
 
+
 //time and countDown
 function updateTime() {
     //current time
@@ -291,6 +292,18 @@ document.querySelectorAll('.open').forEach(button => {
    
   });
 });
+
+
+document.querySelectorAll('.buttonSpace').forEach(button => {
+  button.addEventListener('click', function () {
+    const img = button.querySelector('img'); // Get the image inside the button
+    if (img) {
+      document.body.style.backgroundImage = `url("${img.src}")`;
+    }
+   
+  });
+});
+
 
 
 

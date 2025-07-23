@@ -1,0 +1,2 @@
+-[ ]fix weird unintuitive behaviour with pomodor app
+-[ ] allow opening multiple windows. 
