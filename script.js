@@ -1,7 +1,7 @@
 const timeText = document.querySelector("#time");
 
 let windowElements = document.getElementsByClassName("window");
-const countDownButton = document.getElementById("countdownButton");
+const submitCountDownButton = document.getElementById("submitCountDownButton");
 const display = document.getElementById("countdownDisplay");
 let timeValue = null;
 const spaceSubmit = document.getElementById("spaceSubmitButton");
@@ -61,7 +61,8 @@ setInterval(updateTime, 1000);
 
 
 
-countDownButton.addEventListener("click", function() {
+submitCountDownButton.addEventListener("click", function() {
+    
    
 
     const input = document.getElementById("inputDate");
