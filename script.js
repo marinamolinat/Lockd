@@ -8,7 +8,7 @@ const spaceSubmit = document.getElementById("spaceSubmitButton");
 const startButton = document.getElementById("startButton");
 let pause = true;
 const timerButton = document.getElementById("timerButton");
-const pomodoroButton = document.getElementById("pomodoroButton");
+const pomodoroButton = document.getElementById("choosePomodoroButton");
 const pomodoroDisplay = document.getElementById("pomodoroDisplay");
 let pomodoroMinutes = 20;
 let isPomodoro = false;
@@ -347,17 +347,35 @@ function dragElement(elmnt) {
   }
 
   function elementDrag(e) {
-    e = e || window.event;
-    e.preventDefault();
-    // calculate the new cursor position:
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    // set the element's new position:
-    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-  }
+  e = e || window.event;
+  e.preventDefault();
+  
+  // Calculate cursor movement
+  pos1 = pos3 - e.clientX;
+  pos2 = pos4 - e.clientY;
+  pos3 = e.clientX;
+  pos4 = e.clientY;
+
+  // Get proposed new position
+  let newTop = elmnt.offsetTop - pos2;
+  let newLeft = elmnt.offsetLeft - pos1;
+
+  // Get dimensions
+  const winWidth = window.innerWidth;
+  const winHeight = window.innerHeight;
+  const elemWidth = elmnt.offsetWidth;
+  const elemHeight = elmnt.offsetHeight;
+
+  // Clamp within window bounds
+  if (newLeft < 0) newLeft = 0;
+  if (newTop < 0) newTop = 0;
+  if (newLeft + elemWidth > winWidth) newLeft = winWidth - elemWidth;
+  if (newTop + elemHeight > winHeight) newTop = winHeight - elemHeight;
+
+  // Apply clamped values
+  elmnt.style.top = newTop + "px";
+  elmnt.style.left = newLeft + "px";
+}
 
   function closeDragElement() {
     /* stop moving when mouse button is released:*/

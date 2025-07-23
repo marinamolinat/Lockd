@@ -4,14 +4,15 @@
 
 .window {
     
+    
 
     border: 4px;
     border-style: solid;
     border-radius: 10px;
     position: absolute;
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%);
+    top: 45%; 
+    left: 35%; 
+   
     display: flex;
     flex-direction: column;
     background-color: rgba(78, 70, 241, 0.25);
@@ -110,7 +111,7 @@ input {
 
 
 body {
-    background-image: url("images/space.jpg");
+    background-image: url("images/ship.png");
      background-size: cover;
 
     margin: 0;
@@ -127,7 +128,11 @@ h1 {
 }
 
 
-
+#spaces {
+    transform: translate(0%, 0%);
+     top: 10%; 
+    left: 75%; 
+}
 
 #spaces .content{
     display: flex;
@@ -197,6 +202,10 @@ input[type="datetime-local"] {
 }
 
 #pomodoro {
+     transform: translate(0%, 0%);
+     top: 10%; 
+    left: 3%; 
+
     width: 300px;
     height: 200px;
 }
@@ -220,6 +229,7 @@ input[type="datetime-local"] {
 #mediaWindow {
      resize: both;
      overflow: auto;
+
 }
 
 #mediaWindow img {
@@ -274,4 +284,8 @@ input[type="datetime-local"] {
     margin-left: 10px;
     
 
+}
+
+.notVisibleOnLoad {
+    display: none;
 }
