@@ -138,14 +138,14 @@ h1 {
 nav {
     width: 100%;
     display: flex;
-    justify-content: space-around;
-    background-color: #264653;
+    justify-content: space-between;
+
+
     
 }
+#time {
 
-nav * {
     border-radius: 30px;
-
     background-color: rgba(256, 256, 256, 0.25);
     padding-top: 5px;
     padding-bottom: 5px;
@@ -153,7 +153,10 @@ nav * {
     padding-right: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
+    margin-right: 10px;
 }
+
+
 
 input[type="datetime-local"] {
   background: #1a1a1a;
@@ -261,8 +264,7 @@ input[type="datetime-local"] {
 }
 
 #desktopButtons {
-    margin: 10px;
-    margin-top: 20px;
+    
     display: flex;
 }
 
