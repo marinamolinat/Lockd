@@ -305,3 +305,20 @@ input[type="datetime-local"] {
     border-radius: 10px;
     background-image: url("https://i.pinimg.com/736x/9a/68/c0/9a68c08d007087df531b7c1c23923015.jpg");
 }
+#musicYTWindow .content {
+    display: flex;
+    flex-direction: column;
+}
+
+
+#musicYTWindow input{
+    height: 30px;
+    width: 100%;
+}
+
+#musicYTWindow .content button {
+    width: 30px;
+    height: 30px;
+    padding: 0px;
+    margin-left: 5px;
+}

@@ -325,7 +325,22 @@ document.querySelectorAll('.buttonSpace').forEach(button => {
 });
 
 
+function getVideoId(url) {
+    const match = url.match(/[?&]v=([^&#]+)/);
+    return match ? match[1] : null;
+ 
+}
 
+document.getElementById("submitMusicYT").addEventListener("click", function(){
+    console.log('hey');
+    const input = document.querySelector("#lowerDiv input");
+    const iframe =  document.querySelector("#musicYTWindow .content iframe");
+    const idd = getVideoId(input.value);
+    console.log(idd);
+    iframe.src = `https://www.youtube.com/embed/${idd}`;
+ 
+
+});
 
 
 

@@ -56,6 +56,15 @@
         </button>
 
 
+        <button id="musicYTWindowButton" class="open btn btn-outline-light">
+           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-btn" viewBox="0 0 16 16">
+            <path d="M6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"/>
+            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z"/>
+            </svg>
+                        
+        </button>
+
+
 
   
     </div>
@@ -302,7 +311,31 @@
      </div>
     
 
-  
+  <div class="window notVisibleOnLoad" id="musicYTWindow"> 
+        <header class="windowheader">
+        <button class="close">  </button>
+
+        
+    </header>
+
+    <div class="content">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/q86g1aop6a8?si=9kDMzNZNfi88_1kb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div id="lowerDiv" style="display: flex; justify-content: space-between;">
+            <input type="text" placeholder="input the url of a youtube video">
+
+            <button class="btn btn-outline-light" id="submitMusicYT">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+                </svg>
+
+            </button>
+
+        </div>
+        
+        
+    </div>
+
+     </div>
 
 
     
