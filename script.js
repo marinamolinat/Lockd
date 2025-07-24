@@ -5,6 +5,7 @@ const submitCountDownButton = document.getElementById("submitCountDownButton");
 const display = document.getElementById("countdownDisplay");
 let timeValue = null;
 const spaceSubmit = document.getElementById("spaceSubmitButton");
+const mediaSubmit = document.getElementById("mediaSubmitButton")
 const startButton = document.getElementById("startButton");
 let pause = true;
 const timerButton = document.getElementById("timerButton");
@@ -252,6 +253,27 @@ spaceSubmit.addEventListener("click", function() {
     testImage.onload = function () {
     // Only set background if image loads successfully
     document.body.style.backgroundImage = `url("${url}")`;
+  };
+
+  testImage.onerror = function () {
+   alert("Error, image is not valid")
+  };
+
+  testImage.src = url;
+    
+
+})
+
+mediaSubmit.addEventListener("click", function() {
+    const input = document.getElementById("inputMedia")
+    const url = input.value;
+    const testImage = new Image();
+
+    testImage.onload = function () {
+
+    // Only set background if image loads successfully
+    document.querySelector(".imagee").style.backgroundImage = `url("${url}")`;
+
   };
 
   testImage.onerror = function () {
